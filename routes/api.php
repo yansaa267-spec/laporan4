@@ -13,6 +13,9 @@ Route::prefix('v1')->group(function () {
 
     Route::middleware('auth:sanctum')->group(function () {
 
+        // Logout
+        Route::post('/logout', [AuthController::class, 'logout']);
+
         Route::apiResource('categories', CategoryController::class)
             ->except(['destroy']);
 
@@ -29,5 +32,4 @@ Route::prefix('v1')->group(function () {
             [ItemController::class, 'destroy']
         )->middleware('role:admin');
     });
-
 });

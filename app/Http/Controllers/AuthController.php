@@ -64,4 +64,24 @@ class AuthController extends Controller
             'message' => 'User logged in',
         ]);
     }
+
+    public function profile(Request $request)
+    {
+        return response()->json([
+            'status' => 'success',
+            'data' => $request->user(),
+            'message' => 'User profile retrieved successfully',
+        ]);
+    }
+
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => null,
+            'message' => 'User logged out successfully',
+        ]);
+    }
 }
